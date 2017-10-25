@@ -18,3 +18,7 @@ fun2 n
 
 fun1' :: [Integer] -> Integer
 fun1' n = foldl (*) 1 $ map (\x -> x - 2) $ filter even n
+
+fun2' :: Integer -> Integer
+fun2' 1 = 0
+fun2' n = sum $ filter even $ takeWhile (/=1) $ iterate (\ x -> if (even x) then (div x 2) else (3*x+1)) n
