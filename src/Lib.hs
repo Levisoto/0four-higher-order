@@ -72,3 +72,27 @@ xor list = foldr (\x y -> if (x && y) then (False) else (x || y)) False list
 map' :: (a -> b) -> [a] -> [b]
 map' _ [] = []
 map' f list = foldr (\x y -> (f x):y) [] list
+
+myFoldl :: (a -> b -> a) -> a -> [b] -> a
+myFoldl f base xs = foldr (\x y ->f y x) base $ reverse xs
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+  -- Problem 4: Finding Primes -> Sieve of Sundaram
+
+sieveSundaram :: Integer -> [Integer]
+sieveSundaram num = filter posibility [1..2*num+2]
+  where
+    posibility val = (val/=1) && odd val && (not $ existIn val)
+
+existIn :: Integer -> Bool
+existIn num 
+  | elem True val = True
+  | otherwise = False
+  where
+    val = map (elem num) $ generateTable (2*num + 2)
+
+generateTable :: Integer -> [[Integer]]
+generateTable num = [list i | i <- [1..num]]
+  where
+    list n = takeWhile (<(2*num+2)) [(2*n+1)^2,(2*n+1)^2+(4*n+2)..] 
