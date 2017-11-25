@@ -90,7 +90,7 @@ existIn num
   | elem True val = True
   | otherwise = False
   where
-    val = map (elem num) $ generateTable (2*num + 2)
+    val = map (elem num) $ generateTable num
 
 generateTable :: Integer -> [[Integer]]
 generateTable num = [list i | i <- [1..num]]
