@@ -61,3 +61,14 @@ iscomplete :: Tree a -> Bool
 iscomplete Leaf = False
 iscomplete (Node _ Leaf _ Leaf) = True
 iscomplete (Node _ left _ right) = (iscomplete left) && (iscomplete right) && (height left == height right)
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+  -- Problem 3: Build a function that revice a list of Bool and ouput is Bool
+  --
+xor :: [Bool] -> Bool
+xor list = foldr (\x y -> if (x && y) then (False) else (x || y)) False list
+
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+map' f list = foldr (\x y -> (f x):y) [] list
